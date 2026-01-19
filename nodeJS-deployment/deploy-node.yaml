@@ -1,3 +1,4 @@
+
 ---
 - name: Install node and npm
   # replace with your host IP address
@@ -10,8 +11,6 @@
         pkg:
           - nodejs
           - npm
-
-
 - name: Create new linux user for node app
   # replace with your host IP address
   hosts: digital_ocean_server_IP
@@ -19,32 +18,32 @@
     - name: Create linux user
       user:
       # replace with your username
-        name: prashant
+        name: "{{linux_name}}"
         comment: Node User
         group: admin
-
-
 - name: Deploy nodejs app
   # replace with your host IP address
   hosts: digital_ocean_server_IP
   become: True
   # replace with your username
-  become_user: prashant
+  become_user: "{{linux_name}}"
+  vars_files:
+    project-vars
   tasks:
     - name: Unpack the nodejs file
       unarchive:
         # replace with your folder location
-        src: path_to_folder/nodejs-app-1.0.0.tgz
-        # replace with your folder location (destination on remote server)
-        dest: /home/prashant
+        src: "{{location}}/nodejs-app-{{version}}.tgz"
+        #replace with your folder location (destination on remote server)
+        dest: "{{user_home_dir}}"
     - name: Install dependencies
       npm:
         # replace with your folder location
-        path: /home/prashant/package
+        path: "{{user_home_dir}}/package"
     - name: Start the application
       command:
         # replace with your folder location
-        chdir: /home/prashant/package/app
+        chdir: "{{user_home_dir}}/package/app"
         cmd: node server
       async: 1000
       poll: 0

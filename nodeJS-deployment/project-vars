@@ -1,0 +1,7 @@
+version: 1.0.0 
+# your location of nodejs-app
+location: /Users/prashant/ansible-deployments/nodeJS-deployment/nodejs-app 
+# your username as linux_name
+linux_name: prashant  
+user_home_dir: /home/{{linux_name}}
+
