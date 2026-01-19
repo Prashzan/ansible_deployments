@@ -10,9 +10,10 @@
 ```
 
 ### If you are using nexus 3.70 + you must use java version 17.
-  tasks:
+``` tasks:
     - name: Install Java 17
       apt: name=openjdk-17-jre-headless
+```
 
 ### To run the playbook
 ``` ansible-playbook deploy-nexus.yaml ```
