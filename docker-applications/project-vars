@@ -1,1 +1,5 @@
+version: 1.0.0 
+linux_name: prashant  # your username as linux_name, can be used in deploy-docker-new-user.yaml
+user_home_dir: /home/{{linux_name}} # your source home dir on remote server, can be used in deploy-docker-new-user.yaml
+# we have used linux_name and user_home_dir in nodejs deployment, look into project-vars on nodejs deployment folder.
 docker_password: 1234
